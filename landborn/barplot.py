@@ -47,3 +47,9 @@ def barplot(df, xvar, yvar, orientation='vertical', color='b', axis=None):
         axis.set_xlabel(xvar)
 
     return axis
+
+if __name__ == "__main__":
+    x = [1, 2, 3, 4, 5]
+    y = [10, 15, 7, 10, 5]
+    plt = barplot(None, x, y, orientation="vertical" ,save_path="test_scatterplot.png")
+    print('main ran')

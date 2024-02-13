@@ -1,16 +1,18 @@
 import matplotlib.patches as patches
 from matplotlib.path import Path
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
-def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.', ax=None):
+def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.', ax=None, save_path=None):
     if ax is None:
         fig, ax = plt.subplots()
-    if isinstance(xvar, str) and df is not None:
+    if isinstance(xvar, str):
         xdata = df[xvar]
     else:
         xdata = xvar
         
-    if isinstance(yvar, str) and df is not None:
+    if isinstance(yvar, str):
         ydata = df[yvar]
     else:
         ydata = yvar
@@ -43,5 +45,15 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
     ax.set_xlim(min(xdata), max(xdata))
     ax.set_ylim(min(ydata), max(ydata))
     ax.autoscale()
+    
+    if save_path:
+        plt.savefig(save_path)
+        
     plt.show()
     return ax
+
+if __name__ == "__main__":
+    x = [1, 2, 3, 4, 5]
+    y = [10, 15, 7, 10, 5]
+    plt = scatterplot(None, x, y,save_path="test_scatterplot.png")
+    print('main ran')

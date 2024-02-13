@@ -3,38 +3,32 @@ import matplotlib.lines as mlines
 import matplotlib.patches as mpatches
 import pandas as pd
 import numpy as np
-from barplot import barplot as barplot
 
 
-def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.', ax=None):
-    if ax is None:
-        fig, ax = plt.subplots()
-    if isinstance(xvar, str) and df is not None:
-        xdata = df[xvar]
-    else:
-        xdata = xvar
-    
-
-
-def lineplot(df, x=[], y=[], color='k', size=1, style='-', marker=None, ax=None):
+def lineplot(df, x=[], y=[], color='k', size=1, style='-', marker=None, ax=None, save_path=None):
     if ax is None:
         fig, ax = plt.subplots()
 
-    # Check if xvar is a column in df
     if isinstance(x, str) and df is not None:
         xdata = df[x]
     else:
         xdata = x
-
-    # Check if yvar is a column in df
     if isinstance(y, str):
         ydata = df[y]
     else:
         ydata = y
 
     line = mlines.Line2D(xdata, ydata, color=color, linestyle=style, marker=marker, markersize=size)
-
     ax.add_line(line)
     ax.autoscale()
+    
+    if save_path:
+        plt.savefig(save_path)
 
     return ax
+
+if __name__ == "__main__":
+    x = [1, 2, 3, 4, 5]
+    y = [10, 15, 7, 10, 5]
+    plt = lineplot(None, x, y,save_path="test_lineplot.png")
+    print('main ran')
