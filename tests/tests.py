@@ -28,12 +28,21 @@ def test_barplot():
         'categories': np.random.choice(['a', 'b', 'c'], replace=True, size=100)
     })
 
+    #testing vertical
     barplot.barplot(df, 'categories', 'data values', orientation='vertical', color='b')
     plot_path = "tests_images/test_barplot_vert.png"  # Save the plot in a temporary directory
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_barplot_vert_confirmed.png"
 
-    # Assert that the produced plot matches the reference plot
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+        
+    #testing horizontal
+    barplot.barplot(df, 'data values', 'categories', orientation='horizontal', color='b')
+    plot_path = "tests_images/test_barplot_hor.png"  # Save the plot in a temporary directory
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_barplot_hor_confirmed.png"
+
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
