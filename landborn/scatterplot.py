@@ -22,9 +22,9 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
         #creating small square for "point"
         verts = [
         (x, y),  #left, bottom
-        (x, y + .1),  #left, top
-        (x + .1, y + .1),  #right, top
-        (x + .1, y),  #right, bottom
+        (x, y + .05),  #left, top
+        (x + .05, y + .05),  #right, top
+        (x + .05, y),  #right, bottom
         (x, y),  #back to start
         ]
 
@@ -49,7 +49,7 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
     if save_path:
         plt.savefig(save_path)
         
-    plt.show()
+    # plt.show()
     return ax
 
 if __name__ == "__main__":

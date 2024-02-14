@@ -1,11 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
-import matplotlib.patches as mpatches
-import pandas as pd
-import numpy as np
 
+def test(word):
+    print(word + str(5))
 
-def lineplot(df, x=[], y=[], color='k', size=1, style='-', marker=None, ax=None, save_path=None):
+def lineplot(df, x=[], y=[],style='-', color='k', save_path=None):
     if ax is None:
         fig, ax = plt.subplots()
 
