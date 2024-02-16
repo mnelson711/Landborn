@@ -1,6 +1,5 @@
 import pytest
 import matplotlib.pyplot as plt
-import matplotlib.testing.compare as plt_compare
 import numpy as np
 import pandas as pd
 from landborn import lineplot, scatterplot, barplot
