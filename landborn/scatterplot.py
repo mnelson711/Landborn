@@ -41,7 +41,6 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
     
     for patch in patches_li:
         ax.add_patch(patch)
-    print(len(patches_li))
     ax.set_xlim(min(xdata), max(xdata))
     ax.set_ylim(min(ydata), max(ydata))
     ax.autoscale()
@@ -56,4 +55,3 @@ if __name__ == "__main__":
     x = [1, 2, 3, 4, 5]
     y = [10, 15, 7, 10, 5]
     plt = scatterplot(None, x, y,save_path="test_scatterplot.png")
-    print('main ran')

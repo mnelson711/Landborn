@@ -28,7 +28,7 @@ def test_barplot():
     })
 
     #testing vertical
-    barplot.barplot(df, 'categories', 'data values', orientation='vertical', color='b')
+    barplot(df, 'categories', 'data values', orientation='vertical', color='b')
     plot_path = "tests_images/test_barplot_vert.png"  # Save the plot in a temporary directory
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_barplot_vert_confirmed.png"
@@ -37,7 +37,7 @@ def test_barplot():
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
     #testing horizontal
-    barplot.barplot(df, 'data values', 'categories', orientation='horizontal', color='b')
+    barplot(df, 'data values', 'categories', orientation='horizontal', color='b')
     plot_path = "tests_images/test_barplot_hor.png"  # Save the plot in a temporary directory
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_barplot_hor_confirmed.png"
@@ -51,7 +51,7 @@ def test_scatterplot():
     x = [1, 2, 3, 4, 5]
     y = [10, 15, 7, 10, 5]
 
-    scatterplot.scatterplot(None,x,y, color='b')
+    scatterplot(None,x,y, color='b')
     plot_path = "tests_images/test_scatterplot.png"  # Save the plot in a temporary directory
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_scatterplot_confirmed.png"

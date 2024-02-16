@@ -31,4 +31,3 @@ if __name__ == "__main__":
     x = [1, 2, 3, 4, 5]
     y = [10, 15, 7, 10, 5]
     plt = lineplot(None, x, y,save_path="test_lineplot.png")
-    print('main ran')

@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 landborn/__init__.py

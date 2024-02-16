@@ -15,10 +15,7 @@ def barplot(df, xvar, yvar, orientation='vertical', color='lightblue', axis=None
         errors = df.groupby(xvar)[yvar].sem()
 
         bars = []
-        print('test')
         for i, (category, height) in enumerate(zip(categories, heights)):
-            print("x", x[i] - 0.4)
-            print(errors[category])
             error_line = mlines.Line2D([x[i], x[i]], [height-(errors[category]/2), height+(errors[category]/2)], color='black')
             error_line_top = mlines.Line2D([x[i] - 0.1, x[i] + 0.1], [height+(errors[category]/2), height+(errors[category]/2)], color='black')
             error_line_bottom = mlines.Line2D([x[i] - 0.1, x[i] + 0.1], [height-(errors[category]/2), height-(errors[category]/2)], color='black')
@@ -73,7 +70,6 @@ if __name__ == "__main__":
     })
     df.loc[df['categories'] == 'a','data values'] = df.loc[df['categories'] == 'a']['data values'] * 2 - 6
     ax = barplot(df, 'categories', 'data values', orientation='vertical', save_path="test_barplot.png")
-    print('main ran')
     
     
     
