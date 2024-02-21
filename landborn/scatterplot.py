@@ -1,8 +1,6 @@
 import matplotlib.patches as patches
 from matplotlib.path import Path
 import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
 
 def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.', ax=None, save_path=None):
     if ax is None:
@@ -36,7 +34,7 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
             Path.CLOSEPOLY,
         ]
         path = Path(verts, codes)
-        patch = patches.PathPatch(path, lw=1)
+        patch = patches.PathPatch(path, lw=1, color=color)
         patches_li.append(patch)
     
     for patch in patches_li:

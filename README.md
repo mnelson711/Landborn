@@ -7,6 +7,11 @@ Landborn is a Python visualization library designed to make it easy to generate 
 - **Bar Plot**: Generate vertical or horizontal bar plots.
 - **Scatter Plot**: Create scatter plots with customizable colors, markers, and size.
 - **Line Plot**: Plot lines with options for color, size, style, and markers.
+- **Joint Plot**: Plot a scatter and line plot all in one!
+
+## Note
+
+This is a school project and not meant for industry use.
 
 ## Installation
 
@@ -14,3 +19,4 @@ You can install Landborn directly from PyPI:
 
 ```bash
 pip install landborn
+```

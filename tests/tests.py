@@ -2,7 +2,7 @@ import pytest
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from landborn import lineplot, scatterplot, barplot
+from landborn import lineplot, scatterplot, barplot #jointplot
 
 
 def test_lineplot():
@@ -59,3 +59,18 @@ def test_scatterplot():
     # Assert that the produced plot matches the reference plot
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+        
+        
+# def test_jointplot():
+#     # Create a DataFrame for testing
+#     x = [1, 2, 3, 4, 5]
+#     y = [10, 15, 7, 10, 5]
+
+#     jointplot(None,x,y, color='blue')
+#     plot_path = "tests_images/test_jointplot.png"  # Save the plot in a temporary directory
+#     plt.savefig(plot_path)
+#     reference_plot_path = "tests_images/test_jointplot_confirmed.png"
+
+#     # Assert that the produced plot matches the reference plot
+#     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+#         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
