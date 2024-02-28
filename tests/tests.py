@@ -2,7 +2,8 @@ import pytest
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from landborn import lineplot, scatterplot, barplot #jointplot
+from landborn import lineplot, scatterplot, barplot
+
 
 
 def test_lineplot():

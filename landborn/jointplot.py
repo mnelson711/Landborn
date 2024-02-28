@@ -27,7 +27,7 @@ def jointplot(x, y, kind='scatter', ax=None, color='black', title='Joint Plot', 
 
 
 if __name__ == "__main__":
-    x = [1, 2, 3, 4, 5]
-    y = [10, 15, 7, 10, 5]
+    x = [1, 14, 13, 14, 15]
+    y = [10, 15, 1, 10, 15]
     
     ax = jointplot(x, y, color='blue',save_path="test_jointplot.png")

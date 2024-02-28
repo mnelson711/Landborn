@@ -20,3 +20,7 @@ You can install Landborn directly from PyPI:
 ```bash
 pip install landborn
 ```
+
+## Testing
+
+To run the tests, inside main dir, run pytest tests/tests.py
