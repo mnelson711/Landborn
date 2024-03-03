@@ -9,11 +9,15 @@ def barplot(df, xvar, yvar, orientation='vertical', color='lightblue', axis=None
         fig, axis = plt.subplots()
 
     if orientation == 'vertical':
-        categories = df[xvar].unique()
-        x = np.arange(len(categories))
-        heights = df.groupby(xvar)[yvar].mean()
-        errors = df.groupby(xvar)[yvar].sem()
-
+        if isinstance(xvar, str):
+            categories = df[xvar].unique()
+            x = np.arange(len(categories))
+            heights = df.groupby(xvar)[yvar].mean()
+            errors = df.groupby(xvar)[yvar].sem()
+        else:
+            x = xvar
+            heights = x.mean()
+            errors = x.sem()
         bars = []
         for i, (category, height) in enumerate(zip(categories, heights)):
             error_line = mlines.Line2D([x[i], x[i]], [height-(errors[category]/2), height+(errors[category]/2)], color='black')
@@ -70,6 +74,5 @@ if __name__ == "__main__":
     })
     df.loc[df['categories'] == 'a','data values'] = df.loc[df['categories'] == 'a']['data values'] * 2 - 6
     ax = barplot(df, 'categories', 'data values', orientation='vertical', save_path="test_barplot.png")
-    
     
     

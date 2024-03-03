@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name='landborn',
     packages=find_packages(include=['landborn']),
-    version='0.1.3',
+    version='0.2.1',
     description='Landborn Visualization Library',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

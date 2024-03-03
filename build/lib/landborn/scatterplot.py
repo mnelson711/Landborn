@@ -1,8 +1,6 @@
 import matplotlib.patches as patches
 from matplotlib.path import Path
 import matplotlib.pyplot as plt
-import pandas as pd
-import numpy as np
 
 def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.', ax=None, save_path=None):
     if ax is None:
@@ -16,15 +14,21 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
         ydata = df[yvar]
     else:
         ydata = yvar
+    x_data_length = max(xdata) - min(xdata)
+    x_patch_length = (x_data_length / len(xdata)) / 10
+    print(x_patch_length)
     
+    y_data_length = max(ydata) - min(ydata)
+    y_patch_length = (y_data_length / len(ydata)) / 10
+    print(y_patch_length)
     patches_li = []
     for i, (x, y) in enumerate(zip(xdata, ydata)):
         #creating small square for "point"
         verts = [
-        (x, y),  #left, bottom
-        (x, y + .05),  #left, top
-        (x + .05, y + .05),  #right, top
-        (x + .05, y),  #right, bottom
+        (x - x_patch_length, y - y_patch_length),  #left, bottom
+        (x - x_patch_length, y + y_patch_length),  #left, top
+        (x + x_patch_length, y + y_patch_length),  #right, top
+        (x + x_patch_length, y - y_patch_length),  #right, bottom
         (x, y),  #back to start
         ]
 
@@ -36,14 +40,15 @@ def scatterplot(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.'
             Path.CLOSEPOLY,
         ]
         path = Path(verts, codes)
-        patch = patches.PathPatch(path, lw=1)
+        patch = patches.PathPatch(path, lw=1, color=color)
         patches_li.append(patch)
     
     for patch in patches_li:
         ax.add_patch(patch)
     ax.set_xlim(min(xdata), max(xdata))
     ax.set_ylim(min(ydata), max(ydata))
-    ax.autoscale()
+    # ax.autoscale()
+    ax.legend()
     
     if save_path:
         plt.savefig(save_path)

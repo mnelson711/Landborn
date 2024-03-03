@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import matplotlib.patches as mpatches
-import pandas as pd
-import numpy as np
 
 
 def lineplot(df, x=[], y=[], color='k', size=1, style='-', marker=None, ax=None, save_path=None):

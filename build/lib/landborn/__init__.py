@@ -1,8 +1,6 @@
-from .barplot import barplot
-from .lineplot import lineplot
-from .scatterplot import scatterplot
+from .functions import barplot, lineplot, scatterplot, jointplot, swarmplot
 
-__version__ = '0.1.3'
+__version__ = '0.2.1'
 __author__ = 'Molly Nelson'
 
-print("Package Landborn Successfully Imported")
+print("Package Landborn 0.2.1 Successfully Imported")

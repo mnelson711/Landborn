@@ -76,4 +76,3 @@ if __name__ == "__main__":
     ax = barplot(df, 'categories', 'data values', orientation='vertical', save_path="test_barplot.png")
     
     
-    

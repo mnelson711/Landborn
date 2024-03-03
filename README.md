@@ -8,6 +8,7 @@ Landborn is a Python visualization library designed to make it easy to generate 
 - **Scatter Plot**: Create scatter plots with customizable colors, markers, and size.
 - **Line Plot**: Plot lines with options for color, size, style, and markers.
 - **Joint Plot**: Plot a scatter and line plot all in one!
+- **Swarm Plot**: Plot a swarmplot to show data distribution
 
 ## Note
 
