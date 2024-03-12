@@ -86,3 +86,7 @@ def test_swarmplot():
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+        
+
+
+#Tests for Colormaps
