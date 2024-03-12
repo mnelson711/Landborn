@@ -3,6 +3,7 @@ README.md
 setup.py
 landborn/__init__.py
 landborn/barplot.py
+landborn/colormap.py
 landborn/functions.py
 landborn/jointplot.py
 landborn/lineplot.py

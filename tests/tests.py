@@ -9,8 +9,6 @@ import landborn
 # from '../landborn/lineplot' import lineplot
 
 
-
-
 def test_lineplot():
     x = [1, 2, 3, 4, 5]
     y = [10, 15, 7, 10, 5]
@@ -88,5 +86,70 @@ def test_swarmplot():
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
 
-
 #Tests for Colormaps
+
+def test_plot_colormap_gradient():
+    landborn.plot_colormap_gradient('viridis')
+    plot_path = "tests_images/test_gradient.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_gradient_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+        
+def test_plot_colormap_in_rgb_space():
+    landborn.plot_colormap_in_rgb_space('viridis')
+    plot_path = "tests_images/test_rgb_plot.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_rgb_plot_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+
+def test_create_custom_colormap():
+    my_colormap = landborn.create_custom_colormap(title="Test Colormap")
+    landborn.plot_colormap_gradient(my_colormap)
+    plot_path = "tests_images/test_custom_colormap.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_custom_colormap_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+
+def test_delta_e():
+    landborn.delta_e('viridis')
+    plot_path = "tests_images/test_delta_e.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_delta_e_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+
+
+def test_delta_e_lightness():
+    landborn.delta_e_lightness('viridis')
+    plot_path = "tests_images/test_delta_e_lightness.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_delta_e_lightness_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+
+def test_convert_colormap_for_colorblindness():
+    colorblind = landborn.convert_colormap_for_colorblindness('viridis')
+    landborn.plot_colormap_gradient(colorblind)
+    plot_path = "tests_images/test_colorblind.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_colorblind_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+        
+def test_compare_colormaps():
+    landborn.compare_colormaps('viridis', 'rainbow')
+    plot_path = "tests_images/test_compare_colormaps.png"
+    plt.savefig(plot_path)
+    reference_plot_path = "tests_images/test_compare_colormaps_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
