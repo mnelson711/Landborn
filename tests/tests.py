@@ -112,6 +112,11 @@ def test_create_custom_colormap():
     plot_path = "tests_images/test_custom_colormap.png"
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_custom_colormap_confirmed.png"
+    
+    landborn.plot_colormap_in_rgb_space(my_colormap)
+    plot_path_rgb = "tests_images/test_custom_colormap_rgb.png"
+    plt.savefig(plot_path)
+    reference_plot_path_rgb = "tests_images/test_custom_colormap_rgb_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
