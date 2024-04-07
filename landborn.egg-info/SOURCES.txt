@@ -4,7 +4,9 @@ setup.py
 landborn/__init__.py
 landborn/barplot.py
 landborn/colormap.py
+landborn/config.py
 landborn/functions.py
+landborn/gradient.py
 landborn/jointplot.py
 landborn/lineplot.py
 landborn/scatterplot.py
