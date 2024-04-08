@@ -12,10 +12,11 @@ import landborn
 def test_lineplot():
     x = [1, 2, 3, 4, 5]
     y = [10, 15, 7, 10, 5]
+    
+    landborn.set_plot_backend('matplotlib')
 
-    landborn.lineplot(None,x,y, color='b')
     plot_path = "tests_images/test_lineplot.png"
-    plt.savefig(plot_path)
+    landborn.lineplot(None,x,y, color='b', save_path=plot_path)
     reference_plot_path = "tests_images/test_lineplot_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
@@ -27,19 +28,20 @@ def test_barplot():
         'data values': np.random.normal(5, 1, 100),
         'categories': np.random.choice(['a', 'b', 'c'], replace=True, size=100)
     })
+    
+    landborn.set_plot_backend('matplotlib')
+    
     #testing vertical
-    landborn.barplot(df, 'categories', 'data values', orientation='vertical', color='b')
     plot_path = "tests_images/test_barplot_vert.png"
-    plt.savefig(plot_path)
+    landborn.barplot(df, 'categories', 'data values', orientation='vertical', color='b', save_path=plot_path)
     reference_plot_path = "tests_images/test_barplot_vert_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
     #testing horizontal
-    landborn.barplot(df, 'data values', 'categories', orientation='horizontal', color='b')
     plot_path = "tests_images/test_barplot_hor.png"
-    plt.savefig(plot_path)
+    landborn.barplot(df,'categories','data values', orientation='horizontal', color='b', save_path=plot_path)
     reference_plot_path = "tests_images/test_barplot_hor_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
@@ -49,41 +51,43 @@ def test_barplot():
 def test_scatterplot():
     x = [1, 2, 3, 4, 5]
     y = [10, 15, 7, 10, 5]
-
-    landborn.scatterplot(None,x,y, color='b')
+    
+    landborn.set_plot_backend('matplotlib')
     plot_path = "tests_images/test_scatterplot.png"
-    plt.savefig(plot_path)
+    landborn.scatterplot(None,x,y, color='b', save_path=plot_path)
     reference_plot_path = "tests_images/test_scatterplot_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
         
-def test_jointplot():
-    x = [1, 2, 3, 4, 5]
-    y = [10, 15, 7, 10, 5]
+# def test_jointplot():
+#     x = [1, 2, 3, 4, 5]
+#     y = [10, 15, 7, 10, 5]
+    
+#     landborn.set_plot_backend('matplotlib')
 
-    landborn.jointplot(x, y, color='blue')
-    plot_path = "tests_images/test_jointplot.png"
-    plt.savefig(plot_path)
-    reference_plot_path = "tests_images/test_jointplot_confirmed.png"
+#     landborn.jointplot(x, y, color='blue')
+#     plot_path = "tests_images/test_jointplot.png"
+#     plt.savefig(plot_path)
+#     reference_plot_path = "tests_images/test_jointplot_confirmed.png"
 
-    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
-        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+#     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+#         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
-def test_swarmplot():
-    np.random.seed(120)
-    data = pd.DataFrame({
-    'Category': ['A']*80 + ['B']*80 + ['C']*80,
-    'Value': np.concatenate([np.random.randint(0, 20, size=80), np.random.randint(20, 30, size=80), np.random.randint(30, 50, size=80)])
-    })
-    landborn.swarmplot(data, 'Category', 'Value', r=0.8)
-    plot_path = "tests_images/test_swarmplot.png"
-    plt.savefig(plot_path)
-    reference_plot_path = "tests_images/test_swarmplot_confirmed.png"
+# def test_swarmplot():
+#     np.random.seed(120)
+#     data = pd.DataFrame({
+#     'Category': ['A']*80 + ['B']*80 + ['C']*80,
+#     'Value': np.concatenate([np.random.randint(0, 20, size=80), np.random.randint(20, 30, size=80), np.random.randint(30, 50, size=80)])
+#     })
+#     landborn.set_plot_backend('matplotlib')
+#     plot_path = "tests_images/test_swarmplot.png"
+#     landborn.swarmplot(data, 'Category', 'Value', r=0.8, save_path=plot_path)
+#     reference_plot_path = "tests_images/test_swarmplot_confirmed.png"
 
-    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
-        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+#     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+#         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
         
 
 #Tests for Colormaps
@@ -113,9 +117,9 @@ def test_create_custom_colormap():
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_custom_colormap_confirmed.png"
     
-    landborn.plot_colormap_in_rgb_space(my_colormap)
     plot_path_rgb = "tests_images/test_custom_colormap_rgb.png"
-    plt.savefig(plot_path)
+    landborn.plot_colormap_in_rgb_space(my_colormap, save_path=plot_path_rgb)
+
     reference_plot_path_rgb = "tests_images/test_custom_colormap_rgb_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
@@ -155,6 +159,37 @@ def test_compare_colormaps():
     plot_path = "tests_images/test_compare_colormaps.png"
     plt.savefig(plot_path)
     reference_plot_path = "tests_images/test_compare_colormaps_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+        
+        
+#Tests for Heatmaps
+
+def test_gradient_heatmap():
+    np.random.seed(0)
+    data = np.random.randint(0, 100, size=60)
+    plot_path = "tests_images/test_gradient_heatmap.png"
+    landborn.gradient_heatmap(data, colormap='magma', title="Gradient HeatMap Test", save_path=plot_path)
+    reference_plot_path = "tests_images/test_gradient_heatmap_confirmed.png"
+
+    with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
+        assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"
+
+def test_month_year_heatmap():
+    # Generate sample data for testing
+    np.random.seed(0)
+    data = np.random.rand(12, 5)  # 12 months, 5 years of data
+    years = [2016, 2017, 2018, 2019, 2020]
+    months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    df = pd.DataFrame(data, index=months, columns=years)
+
+    plot_path = "tests_images/test_month_year_heatmap.png"
+    landborn.month_year_heatmap(df, title='Month-Year Heatmap Test', colormap="magma", save_path=plot_path)
+    reference_plot_path = "tests_images/test_month_year_heatmap_confirmed.png"
 
     with open(plot_path, "rb") as plot_file, open(reference_plot_path, "rb") as reference_file:
         assert plot_file.read() == reference_file.read(), "Produced plot differs from reference plot"

@@ -102,7 +102,7 @@ def scatterplot_plotly(df=None, xvar=None, yvar=None, color='blue', colormap='Vi
 
 
 def scatterplot_matplotlib(df, xvar, yvar, color='k',colormap='viridis', size=1, marker='.', ax=None, save_path=None):
-    print('marplotlib')
+    # print('matplotlib')
     if ax is None:
         fig, ax = plt.subplots()
     if isinstance(xvar, str):
@@ -116,11 +116,11 @@ def scatterplot_matplotlib(df, xvar, yvar, color='k',colormap='viridis', size=1,
         ydata = yvar
     x_data_length = max(xdata) - min(xdata)
     x_patch_length = (x_data_length / len(xdata)) / 5
-    print(x_patch_length)
+    # print(x_patch_length)
     
     y_data_length = max(ydata) - min(ydata)
     y_patch_length = (y_data_length / len(ydata)) / 5
-    print(y_patch_length)
+    # print(y_patch_length)
     patches_li = []
     for i, (x, y) in enumerate(zip(xdata, ydata)):
         #creating small square for "point"
@@ -160,12 +160,12 @@ def scatterplot_matplotlib(df, xvar, yvar, color='k',colormap='viridis', size=1,
 
 def lineplot(df, xvar, yvar, color='black', colormap = None, size=6, style='-', marker=None, save_path=None):
     if Config.plot_backend == 'matplotlib':
-        print('matplotlib')
+        # print('matplotlib')
         # (df, x=[], y=[], color='k', size=1, style='-', marker=None, ax=None, save_path=None)
         matplotlib_marker = convert_marker(marker, to='matplotlib')
         return lineplot_matplotlib(df, xvar, yvar, color, size, style, marker=matplotlib_marker, save_path=save_path)
     elif Config.plot_backend == 'plotly':
-        print('plotly')
+        # print('plotly')
         plotly_marker = convert_marker(marker, to='plotly')
         return lineplot_plotly(df, xvar, yvar, color, size=size, style=style, marker=plotly_marker, save_path=save_path)
 
@@ -417,6 +417,8 @@ def swarmplot(df, categorical_data, numerical_data, r=0.5, ax=None, save_path=No
     plt.gca().set_aspect('equal', adjustable='box')
     if save_path:
         plt.savefig(save_path)
+    else:
+        plt.show()
 
 if __name__ == '__main__':
     np.random.seed(120)
