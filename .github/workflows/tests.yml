@@ -1,4 +1,4 @@
-name: Run the Tests
+name: Test Python package
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x' # Specify the Python version you want to use
+        python-version: '3.x'
 
     - name: Install dependencies
       run: |
@@ -29,3 +29,14 @@ jobs:
     - name: Run tests
       run: |
         pytest tests/tests.py
+
+    - name: Create test success artifact
+      if: success()
+      run: echo "Tests passed" > success.txt
+
+    - name: Upload test success artifact
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-success
+        path: success.txt

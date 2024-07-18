@@ -1,12 +1,14 @@
-name: Publish package
+name: Publish Python package
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Test Python package"]
+    types:
+      - completed
 
 jobs:
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +18,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x' # Specify the Python version you want to use
+        python-version: '3.x'
+
+    - name: Download test success artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: test-success
 
     - name: Install dependencies
       run: |
@@ -26,7 +33,7 @@ jobs:
 
     - name: Bump version
       run: |
-        bump2version patch  # You can use 'patch', 'minor', or 'major'
+        bump2version patch --new-version
 
     - name: Build package
       run: |
